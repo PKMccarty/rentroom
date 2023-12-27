@@ -25,7 +25,7 @@
                         <div class="col-xl-4">
                         </div>
                         <div class="col-auto">
-                            <a href="" class="btn btn-primary w-100 mb-3">ตรวจสอบการจองห้อง</a>
+                            <a href="{{route('checkstatus')}}" class="btn btn-primary w-100 mb-3">ตรวจสอบการจองห้อง</a>
                             <a href="" class="btn btn-primary w-100">ลงทะเบียนจองห้อง</a>
                         </div>
                     </div>
@@ -33,4 +33,5 @@
             </div>
         </div>
     </div>
+
     @endsection

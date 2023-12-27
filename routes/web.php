@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,7 +17,9 @@ Route::get('/', function () {
     return view('main.about');
 });
 
-Route::get('loginform', function(){
+Route::post('checklogin', [UserController::class, 'checklogin'])->name('checklogin');
+
+Route::get('login', function(){
     return view('login.index');
 })->name('login');
 
