@@ -18,10 +18,15 @@ Route::get('/', function () {
 });
 
 Route::post('checklogin', [UserController::class, 'checklogin'])->name('checklogin');
+Route::get('logout', [UserController::class, 'logout'])->name('logout');
 
 Route::get('login', function(){
     return view('login.index');
 })->name('login');
+
+Route::get('admin', function(){
+    return view('admin.index');
+})->name('admin');
 
 Route::get('about', function(){
     return view('main.about');
@@ -34,3 +39,6 @@ Route::get('register', function(){
 Route::get('checkstatus', function(){
     return view('main.checkstatus');
 })->name('checkstatus');
+/* Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home'); */

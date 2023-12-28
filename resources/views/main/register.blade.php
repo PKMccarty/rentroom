@@ -1,6 +1,18 @@
 <?php
     require_once 'function/datetime_now.php';
 ?>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script>
+$( function() {
+  $( "#datepicker" ).datepicker({
+    dateFormat: 'yy-mm-dd'
+  }
+  );
+} );
+</script>
 @extends('layouts.screen')
 @section('content')
     <!-- Page Heading -->
@@ -17,12 +29,12 @@
                                     <div class="col">
                                         <label for="">วัน</label>
                                         <input class="form-control" type="text" name="" id="" value="<?=$formattedDate?>"
-                                            placeholder="วันที่">
+                                            placeholder="วันที่" readonly>
                                     </div>
                                     <div class="col">
                                         <label for="">เวลา</label>
                                         <input class="form-control" type="text" name="" id="" value="<?=$formattedTime?>"
-                                            placeholder="เวลา">
+                                            placeholder="เวลา" readonly>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -84,8 +96,8 @@
                                     </div>
                                     <div class="col">
                                         <label for="">วันที่จะเข้ารักษา * (กรณีที่ผู้ป่วยมีนัดเข้ารับการผ่าตัด คลอดบุตร เป็นต้น)</label>
-                                        <input class="form-control" type="text" name="subvisit" id="subvisit"
-                                            placeholder="วันที่จะเข้ารักษา">
+                                        <input class="form-control" type="text" name="subvisit" id="datepicker"
+                                            placeholder="วันที่จะเข้ารักษา" readonly>
                                     </div>
                                 </div>
                             </form>

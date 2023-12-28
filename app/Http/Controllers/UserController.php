@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use \App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Facades\Session;
 class UserController extends Controller
 {
 // UserController.php
@@ -36,12 +36,18 @@ public function checklogin(Request $request)
         ->select("SELECT * FROM users WHERE username = ?", [$loginnameFromSecondDB]);
     if (!empty($result) && !empty($users)) {
         session(['loginname' => $result[0]->username, 'name' => $users[0]->name, 'logged_in' => true]);
-        return redirect()->route('about');
+        return redirect()->route('admin');
     }
     return redirect()->back()->withErrors(['error' => 'ไม่สามารถใช้งานได้ ชื่อผู้ใช้งาน หรือ รหัสผ่านผิด'])->withInput();
 }
+public function logout()
+{
+      // ลบ session ทั้งหมด
+      Session::flush();
 
-
+      // Redirect ไปยังหน้า home
+      return redirect('/');
+}
 
 
 }

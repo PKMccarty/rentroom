@@ -43,11 +43,20 @@
                 <span>เกี่ยวกับ</span>
             </a>
         </li>
+        @if (session('logged_in') == true)
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{route('logout')}}">
+                <span>ออกจากระบบ</span>
+            </a>
+        </li>
+            
+        @else
         <li class="nav-item">
             <a class="nav-link collapsed" href="{{route('login')}}">
                 <span>เข้าสู่ระบบ</span>
             </a>
         </li>
+        @endif
         <hr class="sidebar-divider d-none d-md-block">
 
         <!-- Sidebar Toggler (Sidebar) -->
