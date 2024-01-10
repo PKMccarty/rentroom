@@ -1,29 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="dns-prefetch" href="//fonts.bunny.net">
+    @vite(['resources/js/app.js'])
     <title>ระบบจองห้องพิเศษ ออนไลน์</title>
-
-    <!-- Custom fonts for this template-->
-    <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{asset('css/sweetalert2.css')}}" rel="stylesheet" type="text/css">
-    <!-- Include SweetAlert CSS and JS -->
-<link rel="stylesheet" href="{{ asset('vendor/sweetalert2/sweetalert2.min.css') }}">
-<script src="{{ asset('vendor/sweetalert2/sweetalert2.min.js') }}"></script>
+    
+    <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/sweetalert2.css') }}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
-
+    <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+<style>
+    .backgg{
+        background-color: white !important;
+        height: 1090px;
+    }
+</style>
 </head>
 
 <body id="page-top">
@@ -32,10 +32,10 @@
         <div id="content-wrapper" class="d-flex flex-column">
             @include('layouts.navbar')
             <div id="content">
-                <div class="container-fluid">
+                <div class="container-fluid" class="backgg">
                     @yield('content')
                 </div>
-               
+
             </div> @include('layouts.footer')
         </div>
     </div>
@@ -62,25 +62,23 @@
             </div>
         </div>
     </div>
-    <!-- Bootstrap core JavaScript-->
-   {{--  <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script> --}}
-   
-    <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="{{asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
-    <script src="{{asset('js/sweetalert2.js')}}"></script>
-
-    <!-- Page level plugins -->
-    <script src="{{asset('vendor/chart.js/Chart.min.js')}}"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="{{asset('js/demo/chart-area-demo.js')}}"></script>
-    <script src="{{asset('js/demo/chart-pie-demo.js')}}"></script>
-
+    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+    <script src="{{ asset('js/sweetalert2.js') }}"></script>
+    @if (session('logout') == true)
+    <script>
+        Swal.fire({
+            icon: "success",
+            title: "ออกจากระบบเรียบร้อย",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    </script>
+    @php
+        session()->forget('logout');
+    @endphp
+@endif
 </body>
 
 </html>

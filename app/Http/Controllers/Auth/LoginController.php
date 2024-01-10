@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Illuminate\Http\Request;
 class LoginController extends Controller
 {
     /*
@@ -26,7 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '\home';
 
     /**
      * Create a new controller instance.
@@ -37,4 +37,32 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    public function login(Request $request){
+        $input = $request->all();
+        $this->validate($request,[
+            'username'=>'required',
+            'password'=>'required']);
+        if(auth()->attempt(array('username'=>$input['username'],'password'=>$input['password']))){
+            session(['logged_in' => true,'success'=>true]);
+            if(auth()->user()->is_admin ==1){
+
+            return redirect()->route('tableview');
+            
+        }
+        else{
+            return redirect()->route('home');
+        }
+    }else{
+        return redirect()->route('login')->with('error','Invalid Username and Password');
+    }
 }
+public function logout(Request $request) {
+    Auth::logout();
+
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    return redirect('/home');
+}
+}
+

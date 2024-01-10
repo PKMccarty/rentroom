@@ -1,5 +1,5 @@
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{url('/')}}">
@@ -11,14 +11,21 @@
 
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
-
+        @if (session('logged_in') == true)
         <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+            <a class="nav-link" href="{{route('tableview')}}">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>หน้าหลัก</span></a>
+        </li>
+            
+        @else
         <li class="nav-item active">
             <a class="nav-link" href="{{url('/')}}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>หน้าหลัก</span></a>
         </li>
-
+        @endif
         <!-- Divider -->
         <hr class="sidebar-divider">
 
@@ -34,7 +41,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{route('register')}}">
+            <a class="nav-link collapsed" href="{{route('choosebuild')}}">
                 <span>ลงทะเบียนการจอง</span>
             </a>
         </li>
@@ -44,6 +51,24 @@
             </a>
         </li>
         @if (session('logged_in') == true)
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Admin เมนู
+        </div>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{route('dashboard')}}">
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{route('tableview')}}">
+                <span>รายการร้องขอห้องพิเศษ</span>
+            </a>
+        </li>
         <li class="nav-item">
             <a class="nav-link collapsed" href="{{route('logout')}}">
                 <span>ออกจากระบบ</span>
@@ -53,7 +78,7 @@
         @else
         <li class="nav-item">
             <a class="nav-link collapsed" href="{{route('login')}}">
-                <span>เข้าสู่ระบบ</span>
+                <span>สำหรับเจ้าหน้าที่</span>
             </a>
         </li>
         @endif
