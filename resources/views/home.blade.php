@@ -63,7 +63,7 @@
             <div class="row">
                 <div class="col">
                     <a class="mb-3 btn btn-primary btn-large" href="{{route('choosebuild')}}">จองห้องพิเศษ</a>
-                    <a class="mb-3 btn btn-primary btn-large" href="{{route('about')}}">ตรวจสอบสถานะการจอง</a>
+                    <a class="mb-3 btn btn-primary btn-large" href="{{route('checkstatus')}}">ตรวจสอบสถานะการจอง</a>
                 </div>
             </div>
                 

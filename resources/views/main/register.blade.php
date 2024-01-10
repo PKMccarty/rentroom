@@ -28,6 +28,11 @@
 @section('content')
     <!-- Page Heading -->
     <!-- แสดงข้อมูลอื่น ๆ ตามต้องการ -->
+    <div class="row mb-3">
+        <div class="col-md">
+            <button class="btn btn-primary" onclick="goBack()">ย้อนกลับ</button>
+        </div>
+    </div>
     <div class="row">
         <div class="col-xl-12">
             <div class="card mb-5 shadow-lg p-3 mb-5 bg-white rounded">

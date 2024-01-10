@@ -79,6 +79,11 @@
         session()->forget('logout');
     @endphp
 @endif
+<script>
+    function goBack() {
+        window.location.href = "{{ url()->previous() }}";
+    }
+</script>
 </body>
 
 </html>

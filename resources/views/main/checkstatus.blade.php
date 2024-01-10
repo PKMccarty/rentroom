@@ -3,6 +3,11 @@
 @section('content')
     <script src="https://code.jquery.com/jquery-3.6.4.min.js">
     </script>
+      <div class="row mb-3">
+        <div class="col-md">
+            <button class="btn btn-primary" onclick="goBack()">ย้อนกลับ</button>
+        </div>
+    </div>
     <!-- Page Heading -->
     <div class="card shadow-lg p-3 mb-5 bg-white rounded">
         <div class="card-header">ตรวจสอบสถานะการจอง</div>
@@ -28,6 +33,7 @@
             <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="font-size:14px;">
                 {{-- <div class="card-header">{{ $job->first()->job_re_name }}</div> --}}
                 <div class="card-body">
+                    <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -73,6 +79,7 @@
                 @endforeach
             </tbody>
         </table>
+    </div>
             </div>
             </div>
         @endif
@@ -100,7 +107,7 @@
                     title: 'จองเสร็จสิ้น',
                     text: 'ท่านได้จองห้องพิเศษเรียบร้อยแล้ว'
                 }).then(function() {
-                        window.location = '/';
+                        window.location = '/checkstatus';
                     });
                     
             });

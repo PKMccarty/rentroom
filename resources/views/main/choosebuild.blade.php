@@ -12,6 +12,11 @@
 </style>
 @extends('layouts.screen')
 @section('content')
+<div class="row mb-3">
+    <div class="col-md">
+        <button class="btn btn-primary" onclick="goBack()">ย้อนกลับ</button>
+    </div>
+</div>
     <!-- Page Heading -->
     <div id="choose">
         <div class="row">

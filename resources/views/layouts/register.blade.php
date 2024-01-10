@@ -22,6 +22,9 @@
         background-color: white !important;
         height: 1090px;
     }
+    .form-control:disabled, .form-control[readonly] {
+     background-color: white !important;
+    }
 </style>
 </head>
 
@@ -77,6 +80,11 @@
         session()->forget('logout');
     @endphp
 @endif
+<script>
+    function goBack() {
+        window.location.href = "{{ url()->previous() }}";
+    }
+</script>
 </body>
 
 </html>

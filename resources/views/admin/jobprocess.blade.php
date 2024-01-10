@@ -20,6 +20,7 @@ use Carbon\Carbon;
                     <form method="post" action="{{route('processsave')}}">
                         @csrf
                         <input type="hidden" name="jobid" id="jobid" value="{{$job->jobid}}">
+                        <input type="hidden" name="status" id="status" value="2">
                         <div class="row">
                             <div class="col-md">
                                 <div class="form-group">
@@ -41,13 +42,13 @@ use Carbon\Carbon;
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            {{-- <div class="col-md">
+                       {{--  <div class="row">
+                         <div class="col-md">
                                 <div class="form-group">
                                     <label>แพทย์</label>
                                     <input class="form-control" type="text" name="doctor_name">
                                 </div>
-                            </div> --}}
+                            </div>
                             <div class="col-md">
                                 <div class="form-group">
                                     <label for="status">อนุมัติการจอง</label>
@@ -58,7 +59,8 @@ use Carbon\Carbon;
                                     </select>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
+
                         <div class="row">
                             <div class="col-md">
                                 <p>ข้อมูลเบื้องต้น</p>
@@ -85,6 +87,14 @@ use Carbon\Carbon;
                                 <p>มีความประสงค์ขอห้องพิเศษอาคาร</p>
                                 <h5>{{$preroom->room_name}}</h5>
                             </div>
+                            <div class="col-md">
+                                @php
+                                    $datetime2 = Carbon::parse($rows->job_date.' '.$rows->job_time);
+                                    $formattedDateTime2 = $datetime2->addYears(543)->format('d/m/Y H:i');
+                                    @endphp
+                                <p>วันที่ร้องขอ</p>
+                                <h5>{{$formattedDateTime2}}</h5>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md">
@@ -95,6 +105,7 @@ use Carbon\Carbon;
                                 <p>วันที่จอง</p>
                                 <h5>{{$formattedDateTime}}</h5>
                             </div>
+                            
                             <div class="col-md">
                                 <p>ชื่อผู้จอง</p>
                                 <h5>{{$job->job_re_name}}</h5>

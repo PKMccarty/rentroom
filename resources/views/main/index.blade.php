@@ -1,5 +1,10 @@
 @extends('layouts.screen')
 @section('content')
+<div class="row mb-3">
+    <div class="col-md">
+        <button class="btn btn-primary" onclick="goBack()">ย้อนกลับ</button>
+    </div>
+</div>
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
