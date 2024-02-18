@@ -21,8 +21,8 @@
     <div id="choose">
         <div class="row">
             <div class="col-xl-12">
-                <div class="card mb-5 shadow-lg p-3 mb-5 bg-white rounded">
-                    <div class="card-header">ลงทะเบียนการจอง</div>
+                <div class="card mb-5 shadow-lg mb-5 bg-white rounded">
+                    <div class="card-header mb-4 py-3 border-left-primary">ลงทะเบียนการจอง</div>
                     <div class="card-body mx-auto">
                         <div class="row">
                             <a href="{{ route('choosebuild_process', ['room_type' => base64_encode('1')]) }}">

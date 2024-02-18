@@ -10,6 +10,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     @vite(['resources/js/app.js'])
+    <link rel="icon" type="image/png" href="{{ asset('img/rent/cph.png') }}">
     <title>ระบบจองห้องพิเศษ ออนไลน์</title>
     
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">

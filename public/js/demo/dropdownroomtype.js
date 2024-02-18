@@ -11,7 +11,7 @@ $(document).ready(function(){
                     $('#subroomtype').empty();
                     $('#subroomtype').append(' <option value="">กรุณาเลือกห้อง</option>');
                     $.each(data, function(index, subroomtype){
-                    $('#subroomtype').append('<option value="'+ subroomtype.id +'">'+ subroomtype.room_subtype_name +'</option>');
+                    $('#subroomtype').append('<option value="'+ subroomtype.id +'">'+ subroomtype.room_subtype_name +' หมายเลขห้อง '+subroomtype.room_number+'</option>');
                 });
                 }
             });

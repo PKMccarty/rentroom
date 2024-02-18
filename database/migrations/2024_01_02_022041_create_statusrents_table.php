@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 return new class extends Migration
 {
     /**
@@ -21,14 +22,20 @@ return new class extends Migration
             [
                 'status_name' => 'กำลังดำเนินการ',
                 'status_color' => 'text-info',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
             [
                 'status_name' => 'ดำเนินการเรียบร้อย',
                 'status_color' => 'text-success',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
             [
                 'status_name' => 'ยกเลิก',
                 'status_color' => 'text-danger',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
             // เพิ่มข้อมูลอื่น ๆ ตามลำดับ
         ]);

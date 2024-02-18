@@ -1,4 +1,4 @@
-@extends('layouts.screen')
+@extends('layouts.register')
 
 @section('content')
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
@@ -9,6 +9,19 @@
     <link rel="stylesheet" href="{{ asset('image-slide/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('image-slide/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('image-slide/css/owl.theme.default.min.css') }}">
+    
+    @if (Session::has('logsuccess'))
+        <script>
+            $(document).ready(function() {
+                Swal.fire({
+                    icon: 'success',
+                    text: '{{ Session::get('logsuccess') }}',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            });
+        </script>
+    @endif
     <div class="row">
         <div class="col-md"><h5>ระบบจองห้องพิเศษออนไลน์</h5></div>
         
@@ -59,16 +72,22 @@
                 </div>
             </div>
         </div>
+        @if (!Auth::check())
         <div class="d-flex justify-content-center mt-3">
             <div class="row">
                 <div class="col">
-                    <a class="mb-3 btn btn-primary btn-large" href="{{route('choosebuild')}}">จองห้องพิเศษ</a>
+                    <a class="mb-3 btn btn-primary btn-large" href="{{route('registeruser')}}">จองห้องพิเศษ</a>
                     <a class="mb-3 btn btn-primary btn-large" href="{{route('checkstatus')}}">ตรวจสอบสถานะการจอง</a>
                 </div>
             </div>
-                
         </div>
-        
+        @else
+        <div class="d-flex justify-content-center mt-3">
+            <div class="row">
+                <div class="col"></div>
+            </div>
+        </div>
+        @endif
     </section>
     <script src="{{ asset('image-slide/js/jquery.min.js') }}"></script>
     <script src="{{ asset('image-slide/js/popper.js') }}"></script>

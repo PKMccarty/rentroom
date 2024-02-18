@@ -4,24 +4,28 @@
         color: black;
     }
 </style>
+@php
+    use Carbon\Carbon;
+
+@endphp
 @section('content')
 <div class="row mb-3">
     <div class="col-md">
         <a class="btn btn-primary" href="{{route('checkstatus')}}">ย้อนกลับ</a>
     </div>
 </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card shadow-lg p-3 mb-5 bg-white rounded">
-                <div class="card-header">สถานะการจองห้องพิเศษ</div>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg mb-5 bg-white rounded">
+                <div class="card-header mb-4 py-3 border-left-primary">สถานะการจองห้องพิเศษ</div>
 
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
-                            @if ($job->subid == 17)
-                                <img class="card-img-top" src="/{{ $preroom->room_image }}" alt="">
+                            @if ($job->room_type == 15)
+                                <img class="img-fluid" src="/img/rent/cph.png" alt="" width="550">
                             @else
-                                <img class="card-img-top" src="/img/rent/{{ $job->room_subtype_img }}" alt=""
+                                <img class="img-fluid" src="/img/rent/{{ $job->room_subtype_img }}" alt=""
                                 srcset="">
                             @endif
                             
@@ -38,20 +42,15 @@
                                         <p>{{ $job->room_subtype_name }}</p>
                                     </div>
                                     <div class="col">
-                                        <label for="">สถานะผู้ป่วย</label>
-                                        @if ($job->job_pa_status == '2')
-                                            <p>นัดนอนล่วงหน้า</p>
-                                        @elseif($job->job_pa_status == '3')
-                                            <p>กำลังรักษาตัว</p>
-                                        @endif
+                                        <label for="">ชื่อ - สกุล</label>
+                                            <p>{{$job->patient_name}}</p>
                                     </div>
                                     <div class="col">
-                                        <label for="">วันที่จอง</label>
-                                        <p>{{ $job->job_re_date }}</p>
-                                    </div>
-                                    <div class="col">
-                                        <label for="">ผู้จอง</label>
-                                        <p>{{ $job->job_re_name }}</p>
+                                        <label for="">วัน อนุมัติห้องพิเศษ</label>
+                                        @php
+                                            $ddate = Carbon::parse($job->job_re_date_time);
+                                        @endphp
+                                        <p>{{ $ddate->addYears(543)->format('d-m-Y H:i').' น.' }}</p>
                                     </div>
                                     <div class="col">
                                         <label for="">สถานะการจอง</label>
@@ -66,3 +65,4 @@
         </div>
     </div>
 @endsection
+

@@ -1,10 +1,13 @@
 <?php
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoomrentController;
 use App\Http\Controllers\JobrentController;
+use App\Http\Controllers\RoomtypesubController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\DropdownroomController;
 use App\Http\Controllers\SpnurseController;
 
 /*
@@ -18,8 +21,8 @@ use App\Http\Controllers\SpnurseController;
 |
 */
 
-Route::get('choosebuild_process',[RoomrentController::class,'registeruser'])->name('choosebuild_process');
-Route::post('registerusersave',[RoomrentController::class,'registerusersave'])->name('registerusersave');
+Route::get('choosebuild_process',[RoomrentController::class,'index'])->name('choosebuild_process');
+
 Route::any('jobrequest', [JobrentController::class, 'index'])->name('jobrequest');
 
 Route::get('showjob/{id}', [JobrentController::class, 'showjob'])->name('showjob');
@@ -30,9 +33,6 @@ Route::post('showlist', [JobrentController::class, 'listrent'])->name('showlist'
 Route::get('/', function () {
     return view('home');
 });
-Route::get('/page', function () {
-    return view('home');
-})->name('page');
 Route::get('/boxcount', function () {
     return view('main.boxcount');
 })->name('boxcount');
@@ -56,9 +56,9 @@ Route::get('choosebuild', function(){
     return view('main.choosebuild');
 })->name('choosebuild');
 
-Route::get('registeruser', function(){
-    return view('main.registeruser');
-})->name('registeruser');
+Route::get('test', function(){
+    return view('test.index');
+})->name('test');
 
 Route::any('checkstatus', function(){
     return view('main.checkstatus');
@@ -70,16 +70,26 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Auth::routes();
 
-Route::get('/user-logout', [LoginController::class,'logout'])->name('user-logout');
+Route::get('/logout', [LoginController::class,'logout'])->name('logout');
 Route::get('/home',[HomeController::class,'index'])->name('home');
 
 //special nurse
+Route::any('spnurse', function(){
+    return view('spnurse.index');
+})->name('spnurse');
+
 Route::get('spnurse',[SpnurseController::class,'indexspnurse'])->name('spnurse');
-Route::post('/discharge', [SpnurseController::class,'discharge'])->name('discharge');
+Route::get('/discharge/{id}/{rommno}', [SpnurseController::class,'discharge'])->name('discharge');
 //nurse
+Route::any('nurse', function(){
+    return view('nurse.index');
+})->name('nurse');
 Route::get('nurse',[SpnurseController::class,'indexnurse'])->name('nurse');
-Route::get('acceptnurse/{id}/{values}',[SpnurseController::class,'acceptnurse'])->name('acceptnurse');
 //doctor
+
+Route::any('doctor', function(){
+    return view('doctor.index');
+})->name('doctor');
 Route::get('doctor',[SpnurseController::class,'indexdoctor'])->name('doctor');
 Route::get('doctoraccept/{id}/{count}',[SpnurseController::class,'doctorsave'])->name('doctoraccept');
 
@@ -87,6 +97,11 @@ Route::get('doctoraccept/{id}/{count}',[SpnurseController::class,'doctorsave'])-
 Route::any('dashboard', function(){
     return view('admin.adminHome');
 })->name('dashboard');
+
+Route::any('jobprocess', function(){
+    return view('admin.jobprocess');
+})->name('jobprocess');
+
 Route::get('admin/tableview', function(){
     return view('admin.tableview');
 })->name('tableview');
@@ -104,3 +119,4 @@ Route::post('/processsave', [HomeController::class,'processsave'])->name('proces
 Route::get('/get-subroomtype/{id}', [HomeController::class,'getsubroomtype'])->name('get-subroomtype');
 
 Route::get('/countward', [SpnurseController::class,'countward'])->name('countward');
+

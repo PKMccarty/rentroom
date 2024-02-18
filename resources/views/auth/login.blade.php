@@ -1,14 +1,32 @@
 @extends('layouts.screen')
 @section('content')
+@if (Session::has('success'))
+        <script>
+            $(document).ready(function() {
+                Swal.fire({
+                    icon: 'success',
+                    text: '{{ Session::get('success') }}',
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(function() {
+                    window.location = '/';
+                });
+
+            });
+        </script>
+        @php
+            Session::forget('success');
+        @endphp
+    @endif
     <div class="row justify-content-center">
 
-        <div class="col-xl-10 col-lg-12 col-md-9">
+        <div class="col-xl-6">
 
             <div class="card o-hidden border-0 shadow-lg p-3 mb-5 bg-white rounded my-5">
                 <div class="card-body p-0">
                     <!-- Nested Row within Card Body -->
                     <div class="row">
-                        <div class="col-lg-6 d-none d-lg-block text-center p-3"><img src="{{ asset('img/rent/cph.png') }}">
+                        <div class="col-lg-6 d-none d-lg-block text-center p-3"><img src="{{ asset('img/rent/cph.png') }}" class="img-fluid">
                         </div>
                         <div class="col-lg-6">
                             <div class="p-5">

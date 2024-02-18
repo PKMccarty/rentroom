@@ -1,11 +1,11 @@
 @extends('layouts.screen')
 @section('content')
-<div class="container-lg">
-    <div class="row mb-3">
-        <div class="col-md">
-            <button class="btn btn-primary" onclick="goBack()">ย้อนกลับ</button>
-        </div>
+<div class="row mb-3">
+    <div class="col-md">
+        <button class="btn btn-primary" onclick="goBack()">ย้อนกลับ</button>
     </div>
+</div>
+<div class="container-lg">
 <div class="row">
     <div class="col-md">
         <div class="card">

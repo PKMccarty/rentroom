@@ -10,5 +10,5 @@ class Processsave extends Model
     use HasFactory;
     protected $table = 'jobrents';
     protected $primarykey ='id';
-    protected $fillable = ['room_type','status_id'];
+    protected $fillable = ['room_type','status_id','doctor_id'];
 }

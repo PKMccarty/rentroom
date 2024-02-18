@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 class LoginController extends Controller
 {
     /*
@@ -43,12 +44,22 @@ class LoginController extends Controller
             'username'=>'required',
             'password'=>'required']);
         if(auth()->attempt(array('username'=>$input['username'],'password'=>$input['password']))){
-            session(['logged_in' => true,'success'=>true]);
             if(auth()->user()->is_admin ==1){
-
+                session(['logged_in' => true,'success'=>true]);
             return redirect()->route('tableview');
-            
         }
+        else if(auth()->user()->is_admin ==2){
+            Session::flash('success', 'เข้าสู่ระบบสำเร็จ');
+        return redirect()->route('spnurse');
+        }
+        else if(auth()->user()->is_admin ==3){
+            Session::flash('success', 'เข้าสู่ระบบสำเร็จ');
+        return redirect()->route('doctor');
+    }
+    else if(auth()->user()->is_admin ==4){
+        Session::flash('success', 'เข้าสู่ระบบสำเร็จ');
+    return redirect()->route('nurse');
+    }
         else{
             return redirect()->route('home');
         }
@@ -61,7 +72,7 @@ public function logout(Request $request) {
 
     $request->session()->invalidate();
     $request->session()->regenerateToken();
-
+    Session::flash('success', 'ออกจากระบบสำเร็จ');
     return redirect('/home');
 }
 }

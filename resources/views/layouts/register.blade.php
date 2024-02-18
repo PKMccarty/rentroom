@@ -11,6 +11,7 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     @vite(['resources/js/app.js'])
     <title>ระบบจองห้องพิเศษ ออนไลน์</title>
+    <link rel="icon" type="image/png" href="{{ asset('img/rent/cph.png') }}">
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/sweetalert2.css') }}" rel="stylesheet" type="text/css">
     <link
